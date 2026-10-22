@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ruben Havrestiuc — Full-Stack Engineer</title>
+<meta name="description" content="Portfolio of Ruben Havrestiuc, Full-Stack Engineer · AI Automation & Security. An interactive terminal to explore the projects: QuadraJet, Tiivo, ConSentinel, BizzyQuadrigis, Frames of Me, SteelYes, Ebenezer.">
+<style>
+  :root{
+    --bg:#f5f5f7;--win:#ffffff;--bar:#ececef;--ink:#1d1d1f;--muted:#6e6e73;--faint:#8e8e93;
+    --line:#e3e3e6;--accent:#0071e3;--accent-ink:#0a84ff;--green:#30a46c;--pink:#d6336c;--prompt:#30a46c;
+    --radius:16px;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Monaco,"Cascadia Mono",monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#e9e9ec; } }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:var(--sans);
+    background:radial-gradient(1200px 700px at 50% -10%, #ffffff 0%, rgba(255,255,255,0) 60%),linear-gradient(180deg,#f5f5f7 0%, #eef0f3 100%);
+    color:var(--ink);min-height:100%;display:flex;flex-direction:column;align-items:center;
+    padding:28px 16px 48px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  .ic{width:1.05em;height:1.05em;vertical-align:-0.16em;flex:none}
+  .hr-strip{
+    width:100%;max-width:900px;display:flex;align-items:center;gap:12px;margin:0 0 16px;padding:11px 18px;
+    background:rgba(255,255,255,.7);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
+    border:1px solid var(--line);border-radius:980px;font-size:14px;color:var(--muted);box-shadow:0 1px 2px rgba(0,0,0,.04);
+  }
+  .hr-strip b{color:var(--ink);font-weight:600}
+  .hr-strip .spacer{flex:1}
+  .btn{appearance:none;border:0;cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:500;padding:8px 16px;border-radius:980px;background:var(--accent);color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;transition:transform .12s ease, background .2s ease}
+  .btn:hover{background:#0077ed}
+  .btn:active{transform:scale(.97)}
+  .window{width:100%;max-width:900px;background:var(--win);border-radius:var(--radius);border:1px solid rgba(0,0,0,.06);box-shadow:0 30px 60px -20px rgba(0,0,0,.22),0 12px 24px -16px rgba(0,0,0,.18);overflow:hidden;display:flex;flex-direction:column;min-height:560px;max-height:min(80vh,780px)}
+  .titlebar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:linear-gradient(180deg,#f6f6f8,#ececef);border-bottom:1px solid var(--line);user-select:none}
+  .dots{display:flex;gap:8px}
+  .dot{width:12px;height:12px;border-radius:50%}
+  .dot.r{background:#ff5f57;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.12)}
+  .dot.y{background:#febc2e;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.12)}
+  .dot.g{background:#28c840;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.12)}
+  .title{flex:1;text-align:center;font-size:13px;color:var(--faint);font-family:var(--mono);letter-spacing:.2px;margin-right:60px}
+  .chips{display:flex;gap:6px}
+  .chip{font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none;padding:3px 9px;border-radius:7px;background:#fff;border:1px solid var(--line);transition:all .15s ease}
+  .chip:hover{color:var(--accent-ink);border-color:#cfe3fb;background:#f3f8ff}
+  .screen{flex:1;overflow-y:auto;padding:22px clamp(16px,4vw,30px) 8px;font-family:var(--mono);font-size:14px;line-height:1.65;color:var(--ink);scroll-behavior:smooth}
+  .screen::-webkit-scrollbar{width:10px}
+  .screen::-webkit-scrollbar-thumb{background:#d6d6db;border-radius:10px;border:3px solid var(--win)}
+  .muted{color:var(--muted)}.faint{color:var(--faint)}.green{color:var(--green)}.pink{color:var(--pink)}.accent{color:var(--accent-ink)}.b{font-weight:600}
+  a.link{color:var(--accent-ink);text-decoration:none;border-bottom:1px solid rgba(10,132,255,.25)}
+  a.link:hover{border-bottom-color:var(--accent-ink)}
+  .row{white-space:pre-wrap;word-break:break-word}
+  .block{margin:6px 0 14px}
+  .hero{display:flex;gap:22px;flex-wrap:wrap;align-items:center;padding:6px 0 12px}
+  .hero .name{font-family:var(--sans);font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+  .hero .sub{font-family:var(--sans);color:var(--muted);font-size:15px;margin-top:4px}
+  .grid{display:grid;grid-template-columns:auto 1fr;gap:3px 18px;font-size:13px}
+  .grid .k{color:var(--green);font-weight:600}
+  .grid .v{color:var(--ink)}
+  .cmds{display:grid;grid-template-columns:max-content 1fr;gap:4px 22px}
+  .cmds .c{color:var(--accent-ink);font-weight:600}
+  .cmds .d{color:var(--muted)}
+  .cards{display:grid;gap:12px;margin:8px 0 6px}
+  .card{font-family:var(--sans);border:1px solid var(--line);border-radius:14px;padding:15px 17px;background:#fcfcfd;transition:border-color .15s ease, box-shadow .15s ease}
+  .card:hover{border-color:#d7e6fb;box-shadow:0 6px 18px -10px rgba(0,0,0,.18)}
+  .card .h{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+  .pic{width:30px;height:30px;border-radius:8px;background:#eef3fb;color:var(--accent-ink);display:inline-flex;align-items:center;justify-content:center;flex:none}
+  .pic .ic{width:17px;height:17px;vertical-align:0}
+  .card .pname{font-size:16px;font-weight:650;letter-spacing:-.01em;flex:1;min-width:120px}
+  .card .tag{font-size:11px;color:var(--muted);background:#f0f0f3;border-radius:6px;padding:2px 8px}
+  .card .pdesc{color:var(--muted);font-size:13.5px;line-height:1.55;margin:9px 0 10px}
+  .card .stack{display:flex;flex-wrap:wrap;gap:6px}
+  .card .st{font-family:var(--mono);font-size:11px;color:#3a3a3c;background:#eef1f4;border-radius:6px;padding:3px 8px}
+  .card .plink{margin-top:10px;display:inline-flex;align-items:center;gap:6px;font-size:13px}
+  .chiprow{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 4px}
+  .quick{font-family:var(--mono);font-size:12px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:8px;padding:4px 10px;transition:all .14s ease}
+  .quick:hover{color:var(--accent-ink);border-color:#cfe3fb;background:#f3f8ff}
+  .inputline{display:flex;align-items:center;gap:0;padding:4px 0 20px}
+  .ps1{color:var(--prompt);font-weight:600;white-space:nowrap}
+  .ps1 .at{color:var(--muted);font-weight:500}
+  .ps1 .path{color:var(--accent-ink)}
+  #cmd{flex:1;min-width:40px;border:0;outline:0;background:transparent;font-family:var(--mono);font-size:14px;color:var(--ink);padding:0 0 0 8px;caret-color:var(--accent)}
+  .foot{text-align:center;color:var(--faint);font-size:12px;font-family:var(--mono);margin-top:14px}
+  .foot a{color:var(--faint)}
+  @media (max-width:560px){ .title{display:none} .hero .name{font-size:24px} .screen{font-size:13px} .hr-strip{flex-wrap:wrap;border-radius:18px} }
+  @media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto !important} .btn:active{transform:none} }
+</style>
+</head>
+<body>
+
+  <div class="hr-strip">
+    <span id="hr-ic"></span>
+    <span><b>HR or recruiter?</b> Not comfortable with a terminal? No problem.</span>
+    <span class="spacer"></span>
+    <a class="btn" href="cv.html">Open the CV →</a>
+  </div>
+
+  <main class="window" id="win">
+    <div class="titlebar">
+      <div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+      <div class="title">ruben@portfolio — ~</div>
+      <div class="chips">
+        <a class="chip" id="chip-in" href="#" target="_blank" rel="noopener">in</a>
+        <a class="chip" href="https://github.com/rub3nino" target="_blank" rel="noopener">gh</a>
+        <a class="chip" href="cv.html">cv</a>
+      </div>
+    </div>
+    <div class="screen" id="screen" tabindex="0"></div>
+  </main>
+
+  <div class="foot">Built with HTML, CSS & JS · zero dependencies · <a class="link" href="cv.html">CV version</a></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- icons (clean line SVGs, SF-style) ---------- */
+  var P = {
+    search:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',
+    doc:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/>',
+    shield:'<path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/>',
+    users:'<circle cx="9" cy="8" r="3.1"/><path d="M3.7 20a5.3 5.3 0 0 1 10.6 0"/><path d="M16 5.2a3.1 3.1 0 0 1 0 5.6"/><path d="M18.3 20a5.3 5.3 0 0 0-2.6-4.6"/>',
+    camera:'<path d="M3 8.5A2 2 0 0 1 5 6.5h1.6l1.1-1.5a1 1 0 0 1 .8-.4h5a1 1 0 0 1 .8.4l1.1 1.5H19a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="12.4" r="3.1"/>',
+    cube:'<path d="M12 2.5l8 4.5v9l-8 4.5-8-4.5v-9z"/><path d="M4 7l8 4.5 8-4.5"/><path d="M12 11.5V21"/>',
+    music:'<path d="M9 18V6l10-2v12"/><circle cx="6.4" cy="18" r="2.4"/><circle cx="16.4" cy="16" r="2.4"/>',
+    mail:'<rect x="3" y="5" width="18" height="14" rx="2.2"/><path d="M3.6 6.8l8.4 5.8 8.4-5.8"/>',
+    phone:'<path d="M6.5 3.7l2 .3c.6.1 1.1.5 1.2 1.1l.5 2.1c.1.5-.1 1.1-.6 1.4L8 10a12 12 0 0 0 6 6l1.4-1.6c.3-.4.9-.6 1.4-.5l2.1.5c.6.1 1 .6 1.1 1.2l.3 2c.1.9-.6 1.8-1.6 1.8A15.5 15.5 0 0 1 4.7 5.3c0-1 .8-1.7 1.8-1.6z"/>',
+    pin:'<path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/>',
+    terminal:'<rect x="3" y="4" width="18" height="16" rx="2.4"/><path d="M7 9l3 3-3 3"/><path d="M13 15h4"/>',
+    link:'<path d="M7 17L17 7"/><path d="M8 7h9v9"/>'
+  };
+  var BRAND = {
+    github:'<path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/>',
+    linkedin:'<path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/>'
+  };
+  function ic(name){
+    if(BRAND[name]) return '<svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'+BRAND[name]+'</svg>';
+    return '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(P[name]||'')+'</svg>';
+  }
+  document.getElementById("hr-ic").innerHTML = ic("terminal");
+
+  var LINKEDIN = "https://www.linkedin.com/in/ruben-havrestiuc-87592626b/";
+  var EMAIL    = "havrestiucruben@gmail.com";
+  var PHONE    = "+39 333 110 8105";
+  var GITHUB   = "https://github.com/rub3nino";
+  document.getElementById("chip-in").href = LINKEDIN;
+
+  var ME = {
+    name:"Ruben Havrestiuc",
+    role:"Full-Stack Engineer · AI Automation & Security",
+    tagline:"I take a business requirement, turn it into a concrete product, ship it and keep it running in production. Co-founder of a B2B SaaS (Tiivo) and of a software house (Otto Studio)."
+  };
+
+  var PROJECTS = [
+    {
+      key:"quadra", icon:"search", name:"QuadraJet", tag:"Baker Tilly · in production",
+      desc:"Fraud-analysis system for financial auditing: reads accounting entries and surfaces signals of possible fraud to support auditors. Owned end to end — AI-assisted development, the company server it runs on, and three-level security (network, servers, workstations). ~150 users across 30 Italian offices.",
+      stack:["React","Node.js","FastAPI","Ollama (local LLM)","PostgreSQL","Docker"],
+      link:"https://quadra.co-sentinel.com", linkLabel:"quadra.co-sentinel.com", linkNote:"under a confidentiality agreement"
+    },
+    {
+      key:"tiivo", icon:"doc", name:"Tiivo", tag:"B2B SaaS · co-founder",
+      desc:"SaaS that tracks how a recipient interacts with a sales quote, so sellers see how clients engage with offers. Architecture and development mine; data encrypted with Google Cloud KMS; GDPR by design for professionals bound by confidentiality.",
+      stack:["Angular","NestJS","PostgreSQL","Redis · BullMQ","Google Cloud KMS","Docker"],
+      link:"https://tiivo.it", linkLabel:"tiivo.it"
+    },
+    {
+      key:"consentinel", icon:"shield", name:"ConSentinel", tag:"Security · pentest · co-founder",
+      desc:"Local LLM agent lab for automated penetration testing: autonomous multi-agent tooling (PentAGI) on models served with Ollama — no data leaves the machine. Agents test a replica of a project in an isolated virtual environment to find vulnerabilities before release. Strict scope: only my own or client-authorised environments.",
+      stack:["Parrot OS","Docker","Ollama","PentAGI","Python"],
+      link:null
+    },
+    {
+      key:"bizzy", icon:"users", name:"BizzyQuadrigis", tag:"Recruitment CRM · lead dev",
+      desc:"Turned a recruitment agency's process into a complete system: public website plus an internal CRM across the whole pipeline, from candidates to client invoicing. Automated the team's workflows: −40% manual operating time and about €700/month saved on SaaS. Candidate data handled under GDPR.",
+      stack:["React","Node.js","Fastify","PostgreSQL","Chart.js"],
+      link:"https://www.bizzyquadrigis.com", linkLabel:"bizzyquadrigis.com"
+    },
+    {
+      key:"frames", icon:"camera", name:"Frames of Me", tag:"Event tech · privacy-first",
+      desc:"Event photo gallery: organisers and attendees upload photos and everyone finds their own starting from a selfie, with facial recognition. Privacy-first: the selfie is never stored, only the vector remains.",
+      stack:["Angular","NestJS","FastAPI","InsightFace (ArcFace)","HNSW","Docker"],
+      link:"https://framesofme.com", linkLabel:"framesofme.com"
+    },
+    {
+      key:"steelyes", icon:"cube", name:"SteelYes", tag:"UK client · via Otto Studio",
+      desc:"For a UK client: a real-time 3D product configurator with an admin panel, on a headless architecture with AWS S3. Plus automation and security hardening of the client's business processes.",
+      stack:["Next.js","React","Three.js (3D)","Supabase","AWS S3"],
+      link:"https://www.steelyes.co.uk/configurator", linkLabel:"steelyes.co.uk/configurator"
+    },
+    {
+      key:"ebenezer", icon:"music", name:"Ebenezer — DaCor & Orchestra", tag:"Non-profit · lead dev (team of 5)",
+      desc:"Web apps for a non-profit, serving musicians. DaCor: a tool for choir directors that improves score PDFs and manages repertoire. Orchestra: helps musicians study and organise from home.",
+      stack:["React","FastAPI","PyMuPDF","Astro","NestJS","Docker"],
+      link:null
+    }
+  ];
+
+  var SKILLS = {
+    "Languages & stack":["TypeScript","Node.js","React","Next.js","Angular","PostgreSQL","REST / headless"],
+    "AI & agents":["Claude","Cursor","Local models (Ollama)","Multi-agent (PentAGI)","DataSnipper agents"],
+    "Deployment & infra":["Self-built home server","Company server (QuadraJet)","Docker","AWS S3","Google Cloud KMS"],
+    "Security & compliance":["OWASP","Vulnerability assessment","Server/network hardening","Automated pentesting","GDPR · encryption"]
+  };
+
+  var EXPERIENCE = [
+    {role:"Employee", org:"Baker Tilly Revisa S.p.A.", when:"Sep 2026 – present",
+     bullets:["My role: automate everything repetitive at the firm, so auditors can focus where human judgement is genuinely needed."]},
+    {role:"Co-founder & Lead Full-Stack Developer", org:"Otto Studio", when:"Turin · 2023 – present",
+     bullets:["Software house specialising in AI automation and custom software: I follow the whole lifecycle, from requirements and architecture to production deployment.","Application security in every project (OWASP, DNS/email security, security headers) and GDPR-compliant handling of sensitive data."]},
+    {role:"Co-founder & Lead Developer", org:"Tiivo", when:"Turin · 2025 – present",
+     bullets:["B2B SaaS for sales quotes: architecture, development, encryption with Google Cloud KMS and GDPR by design."]}
+  ];
+
+  var screen = document.getElementById("screen");
+  var history = [], hIdx = -1, inputEl = null;
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function out(html){ var d=document.createElement("div"); d.className="block"; d.innerHTML=html; screen.insertBefore(d, document.querySelector(".inputline")); scrollDown(); }
+  function line(html, cls){ return '<div class="row '+(cls||"")+'">'+html+'</div>'; }
+  function scrollDown(){ screen.scrollTop = screen.scrollHeight; }
+  function prompt(){ return '<span class="ps1">ruben<span class="at">@</span>portfolio <span class="path">~</span> $</span>'; }
+  function echoCommand(cmd){ out(line(prompt()+' '+esc(cmd))); }
+
+  function renderWelcome(){
+    var h = ''
+      + '<div class="hero"><div>'
+      +   '<div class="name">'+esc(ME.name)+'</div>'
+      +   '<div class="sub">'+esc(ME.role)+'</div>'
+      + '</div></div>'
+      + '<div class="grid">'
+      +   kv("Location","Turin · studies in Milan")
+      +   kv("Role","Co-founder Tiivo · dev @ Baker Tilly")
+      +   kv("Studies","Cybersecurity & AI — University of Milan")
+      +   kv("Stack","TypeScript · Node · React · Next · PostgreSQL")
+      +   kv("AI","Claude · Cursor · local models")
+      +   kv("Infra","self-built home server + company server")
+      +   kv("In production","QuadraJet · Tiivo · BizzyQuadrigis")
+      + '</div>'
+      + '<div class="row muted" style="margin-top:12px">'+esc(ME.tagline)+'</div>'
+      + '<div class="row faint" style="margin-top:12px">Type <span class="accent b">help</span> to see the commands, or click a shortcut:</div>'
+      + quickRow(["projects","about","skills","contact","cv"]);
+    out(h);
+  }
+  function kv(k,v){ return '<div class="k">'+esc(k)+'</div><div class="v">'+esc(v)+'</div>'; }
+  function quickRow(cmds){ var h='<div class="chiprow">'; cmds.forEach(function(c){ h+='<span class="quick" data-cmd="'+esc(c)+'">'+esc(c)+'</span>'; }); return h+'</div>'; }
+
+  function renderHelp(){
+    var rows = [
+      ["help","Show this list"],["about","Who I am"],
+      ["projects","All projects (with links and stack)"],["open &lt;name&gt;","Open a project (e.g. open quadra)"],
+      ["skills","Technical skills"],["experience","Experience"],["contact","Get in touch"],
+      ["cv","Open the CV (Apple-style, for HR)"],["github / linkedin","Open the profiles"],
+      ["ls","List the projects"],["clear","Clear the terminal"]
+    ];
+    var h = '<div class="row b" style="margin-bottom:8px">Available commands</div><div class="cmds">';
+    rows.forEach(function(r){ h += '<div class="c">'+r[0]+'</div><div class="d">'+r[1]+'</div>'; });
+    h += '</div><div class="row faint" style="margin-top:10px">Tip: ↑ ↓ for history, Tab to autocomplete.</div>';
+    out(h);
+  }
+
+  function renderAbout(){
+    out(''
+      + '<div class="row"><span class="b">'+esc(ME.name)+'</span> — '+esc(ME.role)+'</div>'
+      + '<div class="row" style="margin-top:8px">'+esc(ME.tagline)+'</div>'
+      + '<div class="row muted" style="margin-top:8px">I work directly with clients: I co-founded Otto Studio (a software house for AI automation and custom software) and I am lead developer of a B2B SaaS. I built QuadraJet end to end — a fraud-analysis system used by ~150 people across 30 offices — including the company server it runs on and its three-level security. I also run a self-built home server that hosts my main projects.</div>'
+      + '<div class="row muted" style="margin-top:8px">Hands-on with AI — Claude, Cursor and local models (Ollama, multi-agent tooling) — alongside TypeScript/Node.js, PostgreSQL and REST APIs. Security and GDPR as defaults, not afterthoughts. Native Italian and Romanian, English B2. Studying Cybersecurity and AI at the University of Milan.</div>'
+      + quickRow(["projects","experience","skills","contact"]));
+  }
+
+  function cardHTML(p){
+    var stack = p.stack.map(function(s){ return '<span class="st">'+esc(s)+'</span>'; }).join("");
+    var linkHTML = p.link
+      ? '<div class="plink"><a class="link" href="'+esc(p.link)+'" target="_blank" rel="noopener">'+esc(p.linkLabel)+' '+ic("link")+'</a>'+(p.linkNote?' <span class="faint">· '+esc(p.linkNote)+'</span>':'')+'</div>'
+      : '<div class="plink faint">— private project / no public link</div>';
+    return '<div class="card"><div class="h"><span class="pic">'+ic(p.icon)+'</span><span class="pname">'+esc(p.name)+'</span><span class="tag">'+esc(p.tag)+'</span></div><div class="pdesc">'+esc(p.desc)+'</div><div class="stack">'+stack+'</div>'+linkHTML+'</div>';
+  }
+  function renderProjects(){
+    var h = '<div class="row b" style="margin-bottom:6px">Projects</div><div class="row faint" style="margin-bottom:10px">'+PROJECTS.length+' projects · type <span class="accent">open &lt;name&gt;</span> to open one</div><div class="cards">';
+    PROJECTS.forEach(function(p){ h += cardHTML(p); });
+    out(h+'</div>');
+  }
+  function renderOpen(arg){
+    var p = PROJECTS.filter(function(x){ return x.key===arg || x.name.toLowerCase().indexOf(arg)>-1; })[0];
+    if(!p){ out(line('<span class="pink">open:</span> project "'+esc(arg)+'" not found. Try <span class="accent">projects</span>.')); return; }
+    out('<div class="cards">'+cardHTML(p)+'</div>');
+  }
+  function renderLs(){
+    var names = PROJECTS.map(function(p){ return '<span class="accent">'+esc(p.key)+'</span>'; }).join("   ");
+    out(line(names)+'<div class="row faint" style="margin-top:6px">use <span class="accent">open &lt;name&gt;</span></div>');
+  }
+  function renderSkills(){
+    var h = '<div class="row b" style="margin-bottom:8px">Skills</div>';
+    Object.keys(SKILLS).forEach(function(g){
+      var items = SKILLS[g].map(function(s){ return '<span class="st">'+esc(s)+'</span>'; }).join("");
+      h += '<div class="row" style="margin:6px 0"><span class="green b">'+esc(g)+'</span><div class="stack" style="margin-top:5px">'+items+'</div></div>';
+    });
+    out(h);
+  }
+  function renderExperience(){
+    var h = '<div class="row b" style="margin-bottom:8px">Experience</div>';
+    EXPERIENCE.forEach(function(e){
+      h += '<div style="margin:0 0 12px"><div class="row"><span class="b">'+esc(e.role)+'</span> <span class="muted">· '+esc(e.org)+'</span>'+(e.when?' <span class="faint">· '+esc(e.when)+'</span>':'')+'</div>';
+      e.bullets.forEach(function(b){ h += '<div class="row muted">• '+esc(b)+'</div>'; });
+      h += '</div>';
+    });
+    out(h+'<div class="row faint">Full detail, education and certifications in the <a class="link" href="cv.html">CV →</a></div>');
+  }
+  function renderContact(){
+    out(''
+      + '<div class="cmds">'
+      +   '<div class="c">'+ic("mail")+' Email</div><div class="d"><a class="link" href="mailto:'+esc(EMAIL)+'">'+esc(EMAIL)+'</a></div>'
+      +   '<div class="c">'+ic("phone")+' Phone</div><div class="d"><a class="link" href="tel:'+esc(PHONE.replace(/\s/g,""))+'">'+esc(PHONE)+'</a></div>'
+      +   '<div class="c">'+ic("github")+' GitHub</div><div class="d"><a class="link" href="'+esc(GITHUB)+'" target="_blank" rel="noopener">github.com/rub3nino '+ic("link")+'</a></div>'
+      +   '<div class="c">'+ic("linkedin")+' LinkedIn</div><div class="d"><a class="link" href="'+esc(LINKEDIN)+'" target="_blank" rel="noopener">Ruben Havrestiuc '+ic("link")+'</a></div>'
+      +   '<div class="c">'+ic("terminal")+' CV</div><div class="d"><a class="link" href="cv.html">Open the CV →</a></div>'
+      + '</div>');
+  }
+
+  var COMMANDS = {
+    help: renderHelp, about: renderAbout, whoami: renderAbout,
+    projects: renderProjects, work: renderProjects,
+    skills: renderSkills, experience: renderExperience, contact: renderContact, ls: renderLs,
+    open: function(arg){ if(!arg){ out(line('<span class="pink">open:</span> specify a project, e.g. <span class="accent">open tiivo</span>')); } else { renderOpen(arg); } },
+    cv: function(){ out(line('Opening the CV…')); setTimeout(function(){ location.href="cv.html"; },250); },
+    github: function(){ out(line('Opening GitHub…')); window.open(GITHUB,"_blank","noopener"); },
+    linkedin: function(){ out(line('Opening LinkedIn…')); window.open(LINKEDIN,"_blank","noopener"); },
+    clear: function(){ document.querySelectorAll(".screen .block").forEach(function(b){ b.remove(); }); },
+    date: function(){ out(line('<span class="muted">'+esc(new Date().toString())+'</span>')); },
+    echo: function(arg){ out(line(esc(arg||""))); },
+    pwd: function(){ out(line('<span class="muted">/home/ruben/portfolio</span>')); }
+  };
+  var CMD_NAMES = Object.keys(COMMANDS).concat(["quadra","tiivo","consentinel","bizzy","frames","steelyes","ebenezer"]);
+
+  function run(raw){
+    var cmd = raw.trim();
+    if(cmd===""){ out(line(prompt())); return; }
+    echoCommand(cmd); history.push(cmd); hIdx = history.length;
+    var parts = cmd.split(/\s+/), name = parts[0].toLowerCase(), arg = parts.slice(1).join(" ").toLowerCase();
+    if(COMMANDS[name]){ COMMANDS[name](arg); }
+    else if(PROJECTS.some(function(p){ return p.key===name; })){ renderOpen(name); }
+    else { out(line('<span class="pink">zsh:</span> command not found: <span class="b">'+esc(name)+'</span>. Type <span class="accent">help</span>.')); }
+  }
+
+  function mountInput(){
+    var wrap=document.createElement("div"); wrap.className="inputline"; wrap.innerHTML=prompt();
+    var inp=document.createElement("input"); inp.id="cmd"; inp.autocomplete="off"; inp.autocapitalize="off"; inp.spellcheck=false; inp.setAttribute("aria-label","Terminal command");
+    wrap.appendChild(inp); screen.appendChild(wrap); inputEl=inp;
+    inp.addEventListener("keydown", function(e){
+      if(e.key==="Enter"){ var v=inp.value; inp.value=""; run(v); scrollDown(); }
+      else if(e.key==="ArrowUp"){ e.preventDefault(); if(hIdx>0){ hIdx--; inp.value=history[hIdx]||""; } }
+      else if(e.key==="ArrowDown"){ e.preventDefault(); if(hIdx<history.length-1){ hIdx++; inp.value=history[hIdx]||""; } else { hIdx=history.length; inp.value=""; } }
+      else if(e.key==="Tab"){ e.preventDefault(); var cur=inp.value.trim().toLowerCase(); if(cur){ var m=CMD_NAMES.filter(function(c){ return c.indexOf(cur)===0; }); if(m.length===1){ inp.value=m[0]+" "; } else if(m.length>1){ out(line('<span class="faint">'+m.join("   ")+'</span>')); } } }
+      else if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==="l"){ e.preventDefault(); COMMANDS.clear(); }
+    });
+  }
+  function focusInput(){ if(inputEl){ inputEl.focus(); } }
+
+  document.addEventListener("click", function(e){
+    var q=e.target.closest("[data-cmd]");
+    if(q){ var c=q.getAttribute("data-cmd"); if(inputEl){ inputEl.value=""; } run(c); scrollDown(); focusInput(); return; }
+    if(e.target.closest("a")) return;
+    if(e.target.closest(".window")){ focusInput(); }
+  });
+
+  var bootLines = [
+    '<span class="faint">ruben-portfolio · booting…</span>',
+    '<span class="faint">loading projects ............. <span class="green">ok</span></span>',
+    '<span class="faint">connection established ........ <span class="green">ok</span></span>'
+  ];
+  var bi=0;
+  function boot(){ if(bi<bootLines.length){ out(line(bootLines[bi])); bi++; setTimeout(boot,180); } else { mountInput(); renderWelcome(); focusInput(); } }
+  if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    bootLines.forEach(function(l){ out(line(l)); }); mountInput(); renderWelcome(); focusInput();
+  } else { boot(); }
+})();
+</script>
+</body>
+</html>

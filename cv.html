@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ruben Havrestiuc — CV</title>
+<meta name="description" content="CV of Ruben Havrestiuc, Full-Stack Engineer · AI Automation & Security. Experience, projects, skills, education and certifications.">
+<style>
+  :root{
+    --bg:#fbfbfd;--card:#ffffff;--ink:#1d1d1f;--muted:#6e6e73;--faint:#8e8e93;
+    --line:#e6e6ea;--accent:#0071e3;--accent-ink:#0066cc;--chip:#f1f1f4;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:var(--accent-ink);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .ic{width:1em;height:1em;vertical-align:-0.14em;flex:none}
+  .nav{position:sticky;top:0;z-index:20;backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);background:rgba(251,251,253,.72);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:880px;margin:0 auto;padding:11px 22px;display:flex;align-items:center;gap:18px}
+  .nav .brand{font-weight:600;font-size:15px;letter-spacing:-.01em}
+  .nav .spacer{flex:1}
+  .nav a.navlink{color:var(--muted);font-size:14px}
+  .nav a.navlink:hover{color:var(--ink);text-decoration:none}
+  .nav .back{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:5px 11px;background:#fff;display:inline-flex;align-items:center;gap:6px}
+  .nav .back:hover{color:var(--accent-ink);text-decoration:none;border-color:#cfe3fb}
+  @media(max-width:700px){ .nav .navlink{display:none} }
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px 80px}
+  header.hero{padding:54px 0 30px;border-bottom:1px solid var(--line)}
+  .hero h1{font-size:clamp(34px,6vw,52px);line-height:1.04;letter-spacing:-.025em;font-weight:700;margin:0}
+  .hero .role{font-size:clamp(16px,2.4vw,20px);color:var(--muted);margin:10px 0 0;font-weight:400}
+  .hero .tag{font-size:16px;color:var(--muted);margin:16px 0 0;max-width:680px}
+  .contacts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .contacts a,.contacts span{font-size:14px;color:var(--ink);background:var(--chip);padding:7px 14px;border-radius:980px;display:inline-flex;align-items:center;gap:8px}
+  .contacts a:hover{background:#e7f0fd;color:var(--accent-ink);text-decoration:none}
+  section{padding:38px 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:0}
+  .kicker{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;margin:0 0 20px}
+  .lead{font-size:16.5px;color:var(--ink);line-height:1.6;max-width:720px;margin:0}
+  .exp{display:grid;grid-template-columns:170px 1fr;gap:6px 26px;margin:0 0 26px}
+  .exp:last-child{margin-bottom:0}
+  .exp .when{color:var(--faint);font-size:14px;padding-top:2px}
+  .exp .org{font-weight:600;font-size:17px;letter-spacing:-.01em}
+  .exp .pos{color:var(--muted);font-size:15px;margin-top:1px}
+  .exp ul{margin:10px 0 0;padding:0 0 0 18px}
+  .exp li{color:var(--muted);font-size:14.5px;margin:5px 0}
+  @media(max-width:700px){ .exp{grid-template-columns:1fr;gap:3px} .exp .when{order:-1;font-size:13px} .exp ul{margin-top:8px} }
+  .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:680px){ .pgrid{grid-template-columns:1fr} }
+  .proj{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease}
+  .proj:hover{transform:translateY(-2px);box-shadow:0 14px 30px -18px rgba(0,0,0,.28);border-color:#dce7f6}
+  .proj .pt{display:flex;align-items:center;gap:11px}
+  .pic{width:32px;height:32px;border-radius:9px;background:#eef3fb;color:var(--accent-ink);display:inline-flex;align-items:center;justify-content:center;flex:none}
+  .pic .ic{width:18px;height:18px;vertical-align:0}
+  .proj .pname{font-weight:650;font-size:17px;letter-spacing:-.01em;flex:1;min-width:90px}
+  .proj .tag{font-size:11px;color:var(--muted);background:var(--chip);border-radius:6px;padding:2px 8px;white-space:nowrap}
+  .proj .pd{color:var(--muted);font-size:14px;line-height:1.5;margin:12px 0 14px}
+  .proj .stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .proj .st{font-family:var(--mono);font-size:11px;color:#3a3a3c;background:#eef1f4;border-radius:6px;padding:3px 8px}
+  .proj .pl{font-size:13.5px;font-weight:500}
+  .proj .pl.none{color:var(--faint);font-weight:400}
+  .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  @media(max-width:680px){ .skills{grid-template-columns:1fr} }
+  .skills .g h3{font-size:14px;margin:0 0 10px;color:var(--ink)}
+  .skills .row{display:flex;flex-wrap:wrap;gap:7px}
+  .skills .st{font-size:13px;color:var(--ink);background:var(--chip);border-radius:980px;padding:6px 13px}
+  .edu{display:grid;grid-template-columns:170px 1fr;gap:6px 26px;margin-bottom:22px}
+  .edu:last-child{margin-bottom:0}
+  .edu .when{color:var(--faint);font-size:14px}
+  .edu .deg{font-weight:600;font-size:16px}
+  .edu .sch{color:var(--muted);font-size:14.5px}
+  .edu ul{margin:8px 0 0;padding:0 0 0 18px}
+  .edu li{color:var(--muted);font-size:14px;margin:4px 0}
+  @media(max-width:700px){ .edu{grid-template-columns:1fr} .edu .when{font-size:13px} }
+  .langs{display:flex;flex-wrap:wrap;gap:10px}
+  .langs span{font-size:14px;background:var(--chip);border-radius:980px;padding:7px 14px}
+  footer{padding:36px 0 0;color:var(--faint);font-size:13px;text-align:center}
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important} html{scroll-behavior:auto} }
+  @media print{
+    .nav{display:none} body{background:#fff}
+    .proj:hover{transform:none;box-shadow:none}
+    section{break-inside:avoid;border-color:#ddd;padding:22px 0}
+    .wrap{padding:0 10mm}
+  }
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-in">
+      <span class="brand">Ruben Havrestiuc</span>
+      <a class="navlink" href="#experience">Experience</a>
+      <a class="navlink" href="#projects">Projects</a>
+      <a class="navlink" href="#skills">Skills</a>
+      <a class="navlink" href="#education">Education</a>
+      <span class="spacer"></span>
+      <a class="back" href="index.html" id="back"></a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <header class="hero">
+      <h1>Ruben Havrestiuc</h1>
+      <p class="role">Full-Stack Engineer · AI Automation &amp; Client Deployments · Security</p>
+      <p class="tag">Full-stack engineer who works directly with clients: I take a business requirement, turn it into a concrete implementation, ship it and keep it running in production. Co-founder of a software house focused on AI automation and custom software, and lead developer of a B2B SaaS.</p>
+      <div class="contacts" id="contacts"></div>
+    </header>
+
+    <section id="profile">
+      <p class="kicker">Profile</p>
+      <p class="lead">I built <b>QuadraJet</b> end to end, a fraud-analysis system used by about <b>150 people across 30 offices</b>, including the company server it runs on and its three-level security. I also built a <b>complete home server</b> that runs my main projects. I work hands-on with AI — <b>Claude, Cursor and local models</b> (Ollama, multi-agent tooling) — alongside TypeScript/Node.js, PostgreSQL and REST APIs, treating security and GDPR as defaults, not afterthoughts. Native Italian and Romanian, English B2. Studying Cybersecurity and AI at the University of Milan.</p>
+    </section>
+
+    <section id="experience">
+      <p class="kicker">Experience</p>
+
+      <div class="exp">
+        <div class="when">Sep 2026 – present</div>
+        <div>
+          <div class="org">Baker Tilly Revisa S.p.A.</div>
+          <div class="pos">Employee</div>
+          <ul>
+            <li>My role is to automate everything repetitive at the firm, so auditors can focus where human judgement is genuinely needed.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp">
+        <div class="when">Turin · 2023 – present</div>
+        <div>
+          <div class="org">Otto Studio</div>
+          <div class="pos">Co-founder &amp; Lead Full-Stack Developer</div>
+          <ul>
+            <li>Software house specialising in AI automation and custom software; I follow the whole lifecycle, from requirements and architecture to production deployment.</li>
+            <li>Application security in every project (OWASP, DNS/email security, security headers) and GDPR-compliant handling of sensitive data.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp">
+        <div class="when">Turin · 2025 – present</div>
+        <div>
+          <div class="org">Tiivo</div>
+          <div class="pos">Co-founder &amp; Lead Developer</div>
+          <ul>
+            <li>B2B SaaS for sales quotes (see <a href="#projects">Selected work</a>): architecture, development, encryption with Google Cloud KMS and GDPR by design.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <p class="kicker">Selected work</p>
+      <div class="pgrid" id="pgrid"></div>
+    </section>
+
+    <section id="skills">
+      <p class="kicker">Technical skills</p>
+      <div class="skills" id="skills"></div>
+    </section>
+
+    <section id="education">
+      <p class="kicker">Education &amp; certifications</p>
+
+      <div class="edu">
+        <div class="when">Sep 2026 – ongoing</div>
+        <div>
+          <div class="deg">University of Milan — Cybersecurity &amp; Artificial Intelligence</div>
+        </div>
+      </div>
+
+      <div class="edu">
+        <div class="when">2021 – 2026</div>
+        <div>
+          <div class="deg">ITC “G. Sommeiller”, Turin</div>
+          <div class="sch">Technical diploma, Business Information Systems</div>
+        </div>
+      </div>
+
+      <div class="edu">
+        <div class="when">certifications</div>
+        <div>
+          <div class="deg">Certifications &amp; community</div>
+          <ul>
+            <li>Cambridge English: First (FCE), CEFR B2, grade C, 160/190 (May 2025)</li>
+            <li>Cisco Networking Academy (NetAcad): Cybersecurity — Intermediate (2024) and Advanced (2025)</li>
+            <li>Google: cybersecurity and penetration-testing certification; active in the Google Developer Program (GDG Turin)</li>
+            <li>MeetHack (2025) and AI for Security — RedCarbon Hackathon (OGR Torino, 2026): ethical hacking, CTF and AI-based security tools, in international teams</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="languages">
+      <p class="kicker">Languages</p>
+      <div class="langs">
+        <span>Italian — native</span>
+        <span>Romanian — native</span>
+        <span>English — B2</span>
+        <span>Available to travel in Italy and abroad</span>
+      </div>
+    </section>
+
+    <footer>
+      Prefer to explore differently? Try the <a href="index.html">terminal version →</a><br>
+      Built with HTML, CSS &amp; JS · zero dependencies
+    </footer>
+  </div>
+
+<script>
+  var P = {
+    search:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',
+    doc:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/>',
+    shield:'<path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/>',
+    users:'<circle cx="9" cy="8" r="3.1"/><path d="M3.7 20a5.3 5.3 0 0 1 10.6 0"/><path d="M16 5.2a3.1 3.1 0 0 1 0 5.6"/><path d="M18.3 20a5.3 5.3 0 0 0-2.6-4.6"/>',
+    camera:'<path d="M3 8.5A2 2 0 0 1 5 6.5h1.6l1.1-1.5a1 1 0 0 1 .8-.4h5a1 1 0 0 1 .8.4l1.1 1.5H19a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="12.4" r="3.1"/>',
+    cube:'<path d="M12 2.5l8 4.5v9l-8 4.5-8-4.5v-9z"/><path d="M4 7l8 4.5 8-4.5"/><path d="M12 11.5V21"/>',
+    mail:'<rect x="3" y="5" width="18" height="14" rx="2.2"/><path d="M3.6 6.8l8.4 5.8 8.4-5.8"/>',
+    phone:'<path d="M6.5 3.7l2 .3c.6.1 1.1.5 1.2 1.1l.5 2.1c.1.5-.1 1.1-.6 1.4L8 10a12 12 0 0 0 6 6l1.4-1.6c.3-.4.9-.6 1.4-.5l2.1.5c.6.1 1 .6 1.1 1.2l.3 2c.1.9-.6 1.8-1.6 1.8A15.5 15.5 0 0 1 4.7 5.3c0-1 .8-1.7 1.8-1.6z"/>',
+    pin:'<path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/>',
+    terminal:'<rect x="3" y="4" width="18" height="16" rx="2.4"/><path d="M7 9l3 3-3 3"/><path d="M13 15h4"/>',
+    link:'<path d="M7 17L17 7"/><path d="M8 7h9v9"/>'
+  };
+  var BRAND = {
+    github:'<path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/>',
+    linkedin:'<path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/>'
+  };
+  function ic(name){
+    if(BRAND[name]) return '<svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'+BRAND[name]+'</svg>';
+    return '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(P[name]||'')+'</svg>';
+  }
+
+  document.getElementById("back").innerHTML = ic("terminal")+' Terminal';
+  document.getElementById("contacts").innerHTML =
+      '<a href="mailto:havrestiucruben@gmail.com">'+ic("mail")+' havrestiucruben@gmail.com</a>'
+    + '<a href="tel:+393331108105">'+ic("phone")+' +39 333 110 8105</a>'
+    + '<a href="https://github.com/rub3nino" target="_blank" rel="noopener">'+ic("github")+' GitHub · rub3nino</a>'
+    + '<a href="https://www.linkedin.com/in/ruben-havrestiuc-87592626b/" target="_blank" rel="noopener">'+ic("linkedin")+' LinkedIn</a>'
+    + '<span>'+ic("pin")+' Turin, Italy</span>';
+
+  var PROJECTS = [
+    {icon:"search",name:"QuadraJet",tag:"in production",desc:"Fraud-analysis system for financial auditing: analyses accounting entries to surface signals of possible fraud. Owned end to end — AI-assisted development, the company server it runs on, and three-level security (network, servers, workstations). ~150 users in 30 offices.",stack:["AI-assisted","Company server","3-level security"],link:"https://quadra.co-sentinel.com",label:"quadra.co-sentinel.com",note:"under a confidentiality agreement"},
+    {icon:"doc",name:"Tiivo",tag:"B2B SaaS · lead dev",desc:"Tracks how recipients interact with a sales quote, so sellers see how clients engage with offers. Architecture and development mine; data encrypted with Google Cloud KMS; GDPR by design for professionals bound by confidentiality.",stack:["TypeScript","Node.js","PostgreSQL","Google Cloud KMS"],link:"https://tiivo.it",label:"tiivo.it"},
+    {icon:"cube",name:"SteelYes",tag:"UK client",desc:"For a UK client: a real-time 3D product configurator with an admin panel, on a headless architecture with AWS S3. Plus automation and security hardening of the client's business processes.",stack:["Next.js","Three.js (3D)","Supabase","AWS S3"],link:"https://www.steelyes.co.uk/configurator",label:"steelyes.co.uk/configurator"},
+    {icon:"users",name:"Bizzy Quadrigis",tag:"Milan · 2025–26",desc:"Recruitment CRM and workflow automation: public website plus an internal CRM across the whole pipeline, from candidates to client invoicing. −40% manual operating time, ~€700/month saved on SaaS. Candidate data under GDPR.",stack:["React","Node.js","Fastify","PostgreSQL"],link:"https://www.bizzyquadrigis.com",label:"bizzyquadrigis.com"},
+    {icon:"shield",name:"Local LLM lab & ConSentinel",tag:"co-founder · 2025–",desc:"Autonomous multi-agent tooling (PentAGI) on local models with Ollama: no data leaves the machine. Agents test a replica of a project in an isolated virtual environment to find vulnerabilities before release; ConSentinel automates repeatable penetration-testing checks. Strict scope: only my own or client-authorised environments.",stack:["Parrot OS","Docker","Ollama","PentAGI"],link:"https://github.com/rub3nino",label:"github.com/rub3nino"},
+    {icon:"camera",name:"Frames of Me",tag:"event tech · privacy-first",desc:"Event photo gallery: everyone finds their own photos starting from a selfie, with facial recognition. Privacy-first: the selfie is never stored, only the vector remains.",stack:["Angular","NestJS","InsightFace","HNSW"],link:"https://framesofme.com",label:"framesofme.com"}
+  ];
+  var SKILLS = {
+    "Languages & stack":["TypeScript","Node.js","React","Next.js","SQL · PostgreSQL","REST APIs","Headless architectures"],
+    "AI & agents":["Claude","Cursor","Local models (Ollama)","Multi-agent with tool access (PentAGI)","DataSnipper agents & plugins"],
+    "Deployment & infrastructure":["Self-built home server (runs my main projects)","Company server (runs QuadraJet)","Docker","AWS S3","Google Cloud KMS","Production deployment"],
+    "Security":["OWASP","Vulnerability assessment & patching","DNS/email security","Security headers","Network / server / workstation hardening","Automated penetration testing"],
+    "Data & compliance":["GDPR","Data encryption","Confidential client data"]
+  };
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+
+  document.getElementById("pgrid").innerHTML = PROJECTS.map(function(p){
+    var stack = p.stack.map(function(s){return '<span class="st">'+esc(s)+'</span>';}).join("");
+    var link = p.link
+      ? '<div class="pl"><a href="'+esc(p.link)+'" target="_blank" rel="noopener">'+esc(p.label)+' '+ic("link")+'</a>'+(p.note?' <span style="color:var(--faint);font-weight:400">· '+esc(p.note)+'</span>':'')+'</div>'
+      : '<div class="pl none">private project</div>';
+    return '<article class="proj"><div class="pt"><span class="pic">'+ic(p.icon)+'</span><span class="pname">'+esc(p.name)+'</span><span class="tag">'+esc(p.tag)+'</span></div><p class="pd">'+esc(p.desc)+'</p><div class="stack">'+stack+'</div>'+link+'</article>';
+  }).join("");
+
+  document.getElementById("skills").innerHTML = Object.keys(SKILLS).map(function(g){
+    var items = SKILLS[g].map(function(s){return '<span class="st">'+esc(s)+'</span>';}).join("");
+    return '<div class="g"><h3>'+esc(g)+'</h3><div class="row">'+items+'</div></div>';
+  }).join("");
+</script>
+</body>
+</html>
